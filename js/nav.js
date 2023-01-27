@@ -3,24 +3,24 @@ const getId = (link) => link.getAttribute('href').replace('#', '');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            document.querySelectorAll('.nav-list__item-link').forEach((link) => {
+            document.querySelectorAll('.menu-content__link').forEach((link) => {
                 link.classList.toggle(
-                    'nav-list__item-link---active',
+                    'menu-content__link_active',
                     getId(link) === entry.target.id
                 );
             });
         }
     });
 }, {
-    threshold: 0.1,
+    threshold: 0.4,
 });
 
 document.querySelectorAll('.scroll').forEach(
     (section) => observer.observe(section),
 );
 
-document.querySelector('.nav-list').addEventListener('click', (event) => {
-    if (event.target.classList.contains('nav-list__item-link')) {
+document.querySelector('.menu-content').addEventListener('click', (event) => {
+    if (event.target.classList.contains('menu-content__link')) {
         event.preventDefault();
 
         window.scrollTo({
